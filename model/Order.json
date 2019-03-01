@@ -1,0 +1,20 @@
+{    
+    "summary": {
+        "status": "",
+        "price": ""
+    },
+    "shipTo": {
+        "address": "",
+        "zip": "",
+        "region": "",
+        "shipCountry": ""   
+    },
+    "customerInfo": {
+        "name": "",
+        "firstName": "",
+        "lastName": "",
+        "address": "",
+        "phone": "",
+        "email": ""
+    }      
+}

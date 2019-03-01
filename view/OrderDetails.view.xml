@@ -1,0 +1,147 @@
+<mvc:View xmlns="sap.uxap" 
+        xmlns:m="sap.m" 
+        xmlns:mvc="sap.ui.core.mvc" 
+        xmlns:core="sap.ui.core" 
+        xmlns:l="sap.ui.layout"    
+        xmlns:forms="sap.ui.layout.form" 
+    controllerName="sandboxUI5.controller.OrderDetails">
+    <m:Page title="Order details" showNavButton="true" navButtonPress=".onNavBack">
+        <ObjectPageLayout id="ObjectPageLayout" enableLazyLoading="false" showAnchorBarPopover="false" isChildPage="true">
+            <headerTitle>
+                <ObjectPageHeader objectTitle="Order ({orderDetails>/id}), from {orderDetails>/summary/createdAt}"
+                    isObjectIconAlwaysVisible="true" objectSubtitle="Total price {orderDetails>/summary/price}">
+                </ObjectPageHeader>
+            </headerTitle>
+
+            <headerContent>
+                <l:VerticalLayout>
+                    <l:content>
+                        <m:Text text="Status: {orderDetails>/summary/status}" />
+                        <m:Text text="Customer: {orderDetails>/customerInfo/name}" />
+                    </l:content>
+                </l:VerticalLayout>
+            </headerContent>
+            <sections>
+                <ObjectPageSection title="Ship info">
+                    <subSections>
+                        <ObjectPageSubSection title="Ship info">
+                            <blocks>
+                                
+                                <forms:SimpleForm layout="ColumnLayout" columnsL="1">
+                                    
+                                    <core:Title text="Ship to form" />
+                                                                        
+                                    <m:Label text="Ship to" />
+                                    <m:Input value="{orderDetails>/customerInfo/firstName}" editable="{config>/shipToFormEditMode}" />
+
+                                    <m:Label text="Address" />
+                                    <m:Input value="{orderDetails>/shipTo/address}" editable="{config>/shipToFormEditMode}"/>
+
+                                    <m:Label text="ZIP" />
+                                    <m:Input value="{orderDetails>/shipTo/zip}" editable="{config>/shipToFormEditMode}"/>
+
+                                    <m:Label text="Region" />
+                                    <m:Input value="{orderDetails>/shipTo/region}" editable="{config>/shipToFormEditMode}"/>
+
+                                    <m:Label text="Country" />
+                                    <m:Input value="{orderDetails>/shipTo/shipCountry}" editable="{config>/shipToFormEditMode}"/>
+
+                                </forms:SimpleForm>
+                                <m:FlexBox alignItems="Start" justifyContent="End">
+                                    <m:items>
+                                        <m:Button id="ShipEdit" icon="sap-icon://edit" press="editShipToForm"/>
+                                        <m:Button id="ShipSave" icon="sap-icon://save" press="saveShipToForm" visible="false"/>
+                                        <m:Button id="ShipCancel" icon="sap-icon://cancel" press="cancelShipToForm" visible="false"/>
+                                    </m:items>
+                                </m:FlexBox>
+                            </blocks>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+
+                <ObjectPageSection title="Customer info">
+                    <subSections>
+                        <ObjectPageSubSection title="Customer info">
+                            <blocks>
+                                <forms:SimpleForm editable="true" layout="ColumnLayout" columnsL="1">
+
+                                    <core:Title text="Customer info form" />
+
+                                    <m:Label text="First name" />
+                                    <m:Input value="{orderDetails>/customerInfo/firstName}" editable="{config>/customerInfoFormEditMode}"/>
+
+                                    <m:Label text="Last name" />
+                                    <m:Input value="{orderDetails>/customerInfo/lastName}" editable="{config>/customerInfoFormEditMode}"/>
+
+                                    <m:Label text="Address" />
+                                    <m:Input value="{orderDetails>/customerInfo/address}" editable="{config>/customerInfoFormEditMode}"/>
+
+                                    <m:Label text="Phone" />
+                                    <m:Input value="{orderDetails>/customerInfo/phone}" editable="{config>/customerInfoFormEditMode}"/>
+
+                                    <m:Label text="Email" />
+                                    <m:Input value="{orderDetails>/customerInfo/email}" editable="{config>/customerInfoFormEditMode}"/>
+
+                                </forms:SimpleForm>
+                                <m:FlexBox alignItems="Start" justifyContent="End">
+                                    <m:items>
+                                        <m:Button id="CustEdit" icon="sap-icon://edit" press="editCustomerInfoForm"/>
+                                        <m:Button id="CustSave" icon="sap-icon://save" press="saveCustomerInfoForm" visible="false"/>
+                                        <m:Button id="CustCancel" icon="sap-icon://cancel" press="cancelCustomerInfoForm" visible="false"/>
+                                    </m:items>
+                                </m:FlexBox>
+                            </blocks>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+
+                <ObjectPageSection title="Products">
+                    <subSections>
+                        <ObjectPageSubSection title="Products">
+                            <blocks>
+                                 <m:FlexBox direction="Column" alignItems="End" justifyContent="End">
+                                    <m:items>
+                                        <m:Button  icon="sap-icon://add" press="onOpenProductDialog" />
+                                        <m:Table id="productsTable" mode="Delete" delete="deleteProduct" items="{
+                                                path:'mainData>/OrderProducts'
+                                            }">
+                                            <m:columns>
+                                                <m:Column>
+                                                    <m:Text text="ID" />
+                                                </m:Column>
+                                                <m:Column>
+                                                    <m:Text text="Name" />
+                                                </m:Column>
+                                                <m:Column>
+                                                    <m:Text text="Price" />
+                                                </m:Column>
+                                                <m:Column>
+                                                    <m:Text text="Qty" />
+                                                </m:Column>
+                                                <m:Column>
+                                                    <m:Text text="Total price" />
+                                                </m:Column>                                    
+                                            </m:columns>
+
+                                            <m:items>
+                                                <m:ColumnListItem type="Navigation" press="navToMoreInfo">
+                                                    <m:cells>
+                                                        <m:Text text="{mainData>id}" />
+                                                        <m:Text text="{mainData>name}" />
+                                                        <m:Text text="{mainData>price}" />
+                                                        <m:Text text="{mainData>quantity}" /> 
+                                                        <m:Text text="{mainData>totalPrice}" />                                                
+                                                    </m:cells>
+                                                </m:ColumnListItem>
+                                            </m:items>                                
+                                        </m:Table>                                       
+                                    </m:items>
+                                </m:FlexBox>                                                    
+                            </blocks>
+                        </ObjectPageSubSection>
+                    </subSections>
+                </ObjectPageSection>
+            </sections>
+        </ObjectPageLayout>
+    </m:Page>
+</mvc:View>

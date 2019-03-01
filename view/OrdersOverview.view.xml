@@ -1,0 +1,72 @@
+<mvc:View controllerName="sandboxUI5.controller.OrdersOverview" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc">
+    <Page title="{i18n>ordersOverviewPageTitle}">
+        <Panel class="sapUiResponsiveMargin" width="auto">
+            <content>
+                <FlexBox alignItems="Start" justifyContent="End">
+                    <items>
+                        <Button icon="sap-icon://add" press="onOpenDialog" />
+                    </items>
+                </FlexBox>
+                <Table id="ordersTable" mode="Delete" delete="deleteOrder" items="{
+                            path:'mainData>/Orders'
+                        }">
+                    <columns>
+                        <Column>
+                            <Text text="{i18n>columnNameID}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>columnNameCustomer}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>columnNameCreatedAt}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>columnNameShipedAt}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>columnNameStatus}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>columnNameTotalPrice}" />
+                        </Column>
+                        <Column>
+                            <Text text="{i18n>columnNameShipCountry}" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem type="Navigation" press="navToMoreInfo">
+                            <cells>
+                                <Text text="{mainData>id}" />
+                                <Text text="{mainData>customerInfo/name}" />
+                                <Text text="{
+                                    path: 'mainData>summary/createdAt',
+                                    type: 'sap.ui.model.type.Date',
+                                    formatOptions: {
+                                        source: {
+                                            pattern: 'yyyy-MM-ddTHH:mm:ss.SSSZ'
+                                        },
+                                        pattern: 'MMM dd,yyyy'
+                                    }                                                                        
+                                }" />
+                                <Text text="{
+                                    path: 'mainData>shipTo/shipedAt',
+                                    type: 'sap.ui.model.type.Date',
+                                    formatOptions: {
+                                        source: {
+                                            pattern: 'yyyy-MM-ddTHH:mm:ss.SSSZ'
+                                        },
+                                        pattern: 'MMM dd,yyyy'
+                                    }                         
+                                    }" />
+                                <Text text="{mainData>summary/status}" />
+                                <Text text="{mainData>summary/price}" />
+                                <Text text="{mainData>shipTo/shipCountry}" />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </content>
+        </Panel>
+    </Page>
+
+</mvc:View>

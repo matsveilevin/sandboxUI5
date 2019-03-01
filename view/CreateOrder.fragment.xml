@@ -1,0 +1,54 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:l="sap.ui.layout"
+   xmlns:f="sap.ui.layout.form">
+   <Dialog
+      id="createOrderDialog"
+      title="Create order">
+      <VBox class="sapUiSmallMargin">
+		<f:SimpleForm >
+			<f:content>
+				<Label text="Customer" />
+				<Input value="{Order>/customerInfo/name}" />
+            <Label text="Address" />
+				<Input value="{Order>/shipTo/address}" />
+            <Label text="ZIP" />
+				<Input value="{Order>/shipTo/zip}" />
+            <Label text="Region" />
+				<Input value="{Order>/shipTo/region}" />
+            <Label text="Country" />
+				<Input value="{Order>/shipTo/shipCountry}" />
+
+            <Label text="Status" />
+				<Input value="{Order>/summary/status}" />
+            <Label text="Price" />
+				<Input value="{Order>/summary/price}" />
+
+            <Label text="First name" />
+				<Input value="{Order>/customerInfo/firstName}" />
+            <Label text="Last name" />
+				<Input value="{Order>/customerInfo/lastName}" />
+            <Label text="Address" />
+				<Input value="{Order>/customerInfo/address}" />
+            <Label text="Phone" />
+				<Input value="{Order>/customerInfo/phone}" />
+            <Label text="Email" />
+				<Input value="{Order>/customerInfo/email}" />
+				
+			</f:content>
+		</f:SimpleForm>
+	</VBox>
+     
+      <beginButton>
+         <Button
+            text="OK"
+            press="addOrder" /> 
+      </beginButton>
+      <endButton>
+      <Button
+            text="Cancel"
+            press="onCloseDialog" /> 
+      </endButton>
+   </Dialog>
+</core:FragmentDefinition>

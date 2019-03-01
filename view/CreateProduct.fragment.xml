@@ -1,0 +1,40 @@
+<core:FragmentDefinition
+   xmlns="sap.m"
+   xmlns:core="sap.ui.core"
+   xmlns:l="sap.ui.layout"
+   xmlns:f="sap.ui.layout.form">
+   <Dialog
+      id="createProductDialog"
+      title="Create product">
+      <VBox class="sapUiSmallMargin">
+		<f:SimpleForm >
+			<f:content>
+            
+				<Label text="Name" />
+				<Input value="{Product>/name}" />
+
+                <Label text="Price" />
+				<Input value="{Product>/price}" />
+
+                <Label text="Currency" />
+				<Input value="{Product>/currency}" />
+
+                <Label text="Quantity" />
+				<Input value="{Product>/quantity}" />
+
+         
+			</f:content>
+		</f:SimpleForm>
+	</VBox>     
+    <beginButton>
+        <Button
+            text="OK"
+            press="addProduct" /> 
+    </beginButton>
+    <endButton>
+        <Button
+            text="Cancel"
+            press="onCloseProductDialog" /> 
+     </endButton>
+   </Dialog>
+</core:FragmentDefinition>
